@@ -31,6 +31,7 @@ header{
 header h1{
 	font-size:3em;
 	margin:0;
+	display:none;
 }
 header h1 a{
 	color:#222;
@@ -39,6 +40,7 @@ header h1 a{
 header p{
 	color:#999;
 	margin:0;
+	diusplay:none;
 }
 section{
 	counter-reset:article-num;
