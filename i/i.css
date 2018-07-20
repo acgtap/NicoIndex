@@ -56,7 +56,7 @@ section article .num{
 	background:#ffafc9;
 	width:3em;
 	text-align:right;
-	color:#999;
+	color:#000;
 	counter-increment:article-num;
 }
 section article .num:before{
