@@ -53,6 +53,7 @@ section article h3{
 }
 section article .num{
 	float:left;
+	background:#ffafc9;
 	width:3em;
 	text-align:right;
 	color:#999;
