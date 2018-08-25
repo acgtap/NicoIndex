@@ -44,6 +44,10 @@
   
 ○ 跟读 ： 后接内容，机器人会重复内容  
 ○ 谁在窥屏 ： 看看群里面有谁在窥屏  
+ 
+ ### 自定义类  
+○ 设定入群语句 ： 后接新人入群后欢迎的一句话  
+○ 设定地址 ： 后面接个城市，状态里会显示天气  
   
 ## 开与关  
 ○ 妮可我想你了 ：开启妮可，机器人会回复消息  
@@ -112,4 +116,4 @@
 ○ 版本 ： 查看机器人的当前版本  
 
 ## 更多命令  
-[娱乐菜单](http://index.ai.acgtap.com/yule.md)|[其他功能](http://index.ai.acgtap.com/fuli.md)|[更多小提示](http://index.ai.acgtap.com/tips.md)
+[娱乐菜单](http://index.ai.acgtap.com/yule.md)|[其他功能](http://index.ai.acgtap.com/fuli.md)|[授权特权](http://index.ai.acgtap.com/vip.html)
