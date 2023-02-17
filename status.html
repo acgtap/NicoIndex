@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- import CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+        <el-alert
+        title="说明"
+        type="warning"
+        description="绿色标签代表在线，红色标签代表离线。纯净模式代表只响应授权用户。"
+        show-icon>
+      </el-alert>
+      <el-table
+        :row-class-name="tableRowClassName"
+        v-loading="loading"
+        :data="tableData"
+        style="width: 100%; margin-top: 10px;"
+      >
+        <el-table-column prop="id" label="Id" width="40"> </el-table-column>
+        <el-table-column prop="name" label="头像" width="50">
+          <template slot-scope="scope">
+            <el-avatar
+              :src="'https://q.qlogo.cn/g?b=qq&s=100&nk='+ scope.row.qq"
+            ></el-avatar>
+          </template>
+        </el-table-column>
+        <el-table-column prop="name" label="AI名称" width="100">
+          <template slot-scope="scope">
+            <el-tag :type="scope.row.status" size="medium"
+              >{{ scope.row.name }}</el-tag
+            >
+          </template>
+        </el-table-column>
+        <el-table-column prop="qq" label="QQ号" width="130"> </el-table-column>
+        <el-table-column prop="mod" label="模式" width="140">
+          <template slot-scope="scope">
+            <span>{{ scope.row.mod }}</span> / <span>{{ scope.row.type }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="master" label="主人" width="140">
+        </el-table-column>
+        <el-table-column prop="cpu" label="负载" width="150"></el-table-column>
+      </el-table>
+    </div>
+  </body>
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@2.7.1/dist/vue.min.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: function () {
+        return {
+          tableData: [],
+          loading: true
+        };
+      },
+      mounted() {
+        //界面进来加载
+        this.loadingList();
+      },
+      methods: {
+        tableRowClassName({ row, rowIndex }) {
+          return row.status + "-row";
+          if (row.status === 1) {
+            return "warning-row";
+          } else if (rowIndex === 3) {
+            return "success-row";
+          }
+          return "";
+        },
+        loadingList: function () {
+          let that = this;
+          axios
+            .get("https://album.katomegumi.net/api/?url=/nicole/getList")
+            .then(function (response) {
+              let data = new Array();
+              for (r of response.data.data) {
+                if (r.status == "success") {
+                  data.unshift(r);
+                } else {
+                  data.push(r);
+                }
+              }
+              let dataok = new Array(),
+                i = 1;
+              for (r of data) {
+                r.id = i;
+                i++;
+                dataok.push(r);
+              }
+              that.tableData = dataok;
+              that.loading = false;
+              console.log(dataok);
+            })
+            .catch(function (error) {
+              console.log(error);
+              that.loading = false;
+            });
+        }
+      }
+    });
+  </script>
+  <style>
+    .el-table .danger-row {
+        background: rgb(253, 226, 226);
+    }
+
+    .el-table .success-row {
+      /* background: #f0f9eb;*/
+    }
+  </style>
+</html>
